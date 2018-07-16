@@ -1,0 +1,32 @@
+<% include ../views/partials/header %>
+    <div class="row">
+        <div class="col-md-6">
+            <form method="POST" action="/todo/add">
+                <div class="form-group">
+                    <label>Todo Name</label>
+                    <input class="form-control" type="text" name="text" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label>Todo Body</label>
+                    <textarea class="form-control" name="body" placeholder="Enter the body"></textarea>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+
+            </form>
+        </div>
+        <div class="col-md-6">
+            <ul class="list-group">
+                <% todos.forEach(function(todo){ %>
+                    <li class="list-group-item">
+                        <%= todo.text %> -
+                            <%= todo.body %>
+                                <a href="/todo/edit/<%= todo._id %>" class="btn btn-default">Update</a>
+                                <a data-id="<%= todo._id %>" href="#" class="delete-todo btn btn-danger">Delete</a>
+                    </li>
+                    <% }) %>
+            </ul>
+        </div>
+    </div>
+
+
+    <% include ../views/partials/footer %>
